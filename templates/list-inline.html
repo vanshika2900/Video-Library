@@ -1,0 +1,30 @@
+	<div class='col-12 col-md-10 mb-3 mx-auto'>
+	<div class='card'>
+		<div class='card-body'>
+			{% csrf_token %}
+			
+				<a href = "{{blog_post.get_absolute_url}}"></a>
+				<video name='{{ title }}' controls autoplay width='50%' height='40%'>
+					<source src="media/videos/{{title}}.mp4" type="video/mp4"></source>
+				</video>
+			    
+				
+			<h5 class='card-title'>{{ blog_post.title }}</h5>
+			<p class='card-text'>
+                {% if truncate %}
+					{{ blog_post.content| linebreaks|truncatewords:30 }}
+                {% else %}
+                	{{ blog_post.content| linebreaks }}
+                {% endif %}
+			</p>
+			 <!--<a href = "{{ MEDIA_URL }}{{ blog_post.get_absolute_url }}">download</a>-->
+			{% if not detail %}
+
+				<p></p>
+				
+				<a href = "{{blog_post.get_absolute_url}}">view</a>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
